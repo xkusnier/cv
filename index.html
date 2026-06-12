@@ -18,7 +18,14 @@
 <body>
     <nav class="navbar" aria-label="Main navigation">
         <a class="nav-logo" href="#top" aria-label="Back to top">JK</a>
-        <div class="nav-links">
+    
+        <button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    
+        <div class="nav-links" id="navMenu">
             <a href="#contact">Contact</a>
             <a href="#about">About Me</a>
             <a href="#projects">Projects</a>
@@ -296,5 +303,24 @@
         </div>
         <p class="copyright">© 2026 Jozef Kušnier. All rights reserved.</p>
     </footer>
+<script>
+    const navToggle = document.querySelector(".nav-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    navToggle.addEventListener("click", () => {
+        const isOpen = navLinks.classList.toggle("is-open");
+
+        navToggle.classList.toggle("is-open", isOpen);
+        navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+
+    navLinks.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+            navLinks.classList.remove("is-open");
+            navToggle.classList.remove("is-open");
+            navToggle.setAttribute("aria-expanded", "false");
+        });
+    });
+</script>
 </body>
 </html>
